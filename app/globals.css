@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf9f6;
+  --foreground: #1b3b2a;
+  --gc-dark-green: #1b3b2a;
+  --gc-gold: #c5a059;
+  --gc-gold-light: #d4b87a;
+  --gc-status-green: #22c55e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gc-dark-green: var(--gc-dark-green);
+  --color-gc-gold: var(--gc-gold);
+  --color-gc-gold-light: var(--gc-gold-light);
+  --color-gc-status-green: var(--gc-status-green);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Alpine Luxury: dezente Gold-Akzente für Fokus */
+*:focus-visible {
+  outline: 2px solid var(--gc-gold);
+  outline-offset: 2px;
+}
