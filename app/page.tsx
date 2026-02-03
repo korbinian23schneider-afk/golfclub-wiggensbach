@@ -4,6 +4,53 @@ import Image from "next/image";
 // Öffnungszeiten des Sekretariats (editierbar)
 const openingHours = "Täglich geöffnet von 09:00 bis 17:00 Uhr";
 
+// Wochenübersicht & Platzbelegung (leicht editierbar vom Sekretariat)
+const weeklySchedule = [
+  { 
+    day: "Montag", 
+    date: "12.06.", 
+    events: [
+      { time: "15:00 - 17:00", title: "Damen-Turnier", course: "Kurs A+B", type: "tournament" }
+    ] 
+  },
+  { 
+    day: "Dienstag", 
+    date: "13.06.", 
+    events: [] // Leer = Alles frei
+  },
+  { 
+    day: "Mittwoch", 
+    date: "14.06.", 
+    events: [
+      { time: "08:00 - 12:00", title: "Pflegearbeiten", course: "Kurs C", type: "maintenance" }
+    ] 
+  },
+  { 
+    day: "Donnerstag", 
+    date: "15.06.", 
+    events: [
+      { time: "Ganztägig", title: "Herren-Tag", course: "Kurs A", type: "tournament" }
+    ] 
+  },
+  { 
+    day: "Freitag", 
+    date: "16.06.", 
+    events: [] 
+  },
+  { 
+    day: "Samstag", 
+    date: "17.06.", 
+    events: [
+      { time: "10:00 - 14:00", title: "Jugend-Turnier", course: "Kurs B", type: "tournament" }
+    ] 
+  },
+  { 
+    day: "Sonntag", 
+    date: "18.06.", 
+    events: [] 
+  },
+];
+
 export default function Home() {
   return (
     <div>
@@ -54,10 +101,10 @@ export default function Home() {
             >
               <div className="relative h-64 w-full overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=600&fit=crop&q=80"
-                  alt="Spectacular golf course panorama in the alps"
+                  src="/images/platz-teaser.jpg"
+                  alt="Golfplatz Panorama in den Allgäuer Alpen"
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 33vw"
                 />
               </div>
@@ -78,8 +125,8 @@ export default function Home() {
             >
               <div className="relative h-64 w-full overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1587174486073-ae5e5ceff06c?w=800&h=600&fit=crop&q=80"
-                  alt="Golf professional teaching a student swing analysis"
+                  src="/images/golfschule-teaser.jpg"
+                  alt="Golfschule - Professionelles Training"
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 33vw"
@@ -102,10 +149,10 @@ export default function Home() {
             >
               <div className="relative h-64 w-full overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&q=80"
-                  alt="Restaurant terrace with alpine view"
+                  src="/images/gastro-teaser.jpg"
+                  alt="Gastronomie mit Panoramablick"
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover object-[center_55%] transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 33vw"
                 />
               </div>
@@ -163,6 +210,54 @@ export default function Home() {
           <p className="mt-6 text-sm text-stone-500">
             {openingHours}
           </p>
+        </div>
+      </section>
+
+      {/* Wochenübersicht & Platzbelegung */}
+      <section className="bg-stone-50 py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-3xl font-bold text-gc-dark-green sm:text-4xl mb-12">
+            Wochenübersicht & Platzbelegung
+          </h2>
+          
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-7">
+            {weeklySchedule.map((schedule, index) => (
+              <div
+                key={index}
+                className={`rounded-xl border-2 p-4 ${
+                  schedule.events.length === 0
+                    ? "border-gc-gold/30 bg-white"
+                    : "border-gc-dark-green/30 bg-gc-dark-green/5"
+                }`}
+              >
+                <div className="mb-3 border-b border-gc-gold/20 pb-2">
+                  <p className="font-bold text-gc-dark-green">{schedule.day}</p>
+                  <p className="text-sm text-gc-dark-green/70">{schedule.date}</p>
+                </div>
+                
+                {schedule.events.length === 0 ? (
+                  <p className="text-sm text-gc-dark-green/60">Frei bespielbar</p>
+                ) : (
+                  <div className="space-y-2">
+                    {schedule.events.map((event, eventIndex) => (
+                      <div
+                        key={eventIndex}
+                        className={`rounded-lg p-2 ${
+                          event.type === "tournament"
+                            ? "bg-gc-gold/20 border border-gc-gold/40"
+                            : "bg-stone-200 border border-stone-300"
+                        }`}
+                      >
+                        <p className="text-xs font-medium text-gc-dark-green/80">{event.time}</p>
+                        <p className="text-sm font-semibold text-gc-dark-green">{event.title}</p>
+                        <p className="text-xs text-gc-dark-green/60">{event.course}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>

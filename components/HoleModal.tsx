@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import type { Hole } from "@/lib/courseData";
 import {
   getNextHole,
@@ -61,30 +62,33 @@ export default function HoleModal({
           </svg>
         </button>
 
-        {/* Hochformat-Grafik aus /public/images/course/ */}
-        <div className="relative flex min-h-[280px] w-full items-center justify-center bg-gc-dark-green/10 sm:w-[42%] sm:min-w-0 sm:max-h-[90vh]">
-          <div className="flex h-full min-h-[320px] w-full max-w-[280px] items-center justify-center p-4 sm:min-h-0 sm:max-h-[85vh]">
-            {imageError ? (
-              <div className="flex h-full min-h-[280px] w-full flex-col items-center justify-center rounded-xl border-2 border-dashed border-gc-gold/40 bg-gc-dark-green/5 p-6 text-center">
-                <span className="text-4xl text-gc-gold/60">⛳</span>
-                <p className="mt-2 text-sm font-medium text-gc-dark-green/70">Loch {hole.nummer}</p>
-                <p className="mt-1 text-xs text-gc-dark-green/50">Grafik in /public/images/course/ hinterlegen</p>
-              </div>
-            ) : (
-              <img
-                src={hole.imageSrc}
-                alt={`Loch ${hole.nummer} – Kurs ${courseKey}`}
-                className="h-full max-h-[70vh] w-auto max-w-full object-contain object-center"
-                onError={() => setImageError(true)}
-              />
-            )}
-          </div>
+        {/* Bild-Container: Festhöhe mit Zoom-Effekt */}
+        <div className="relative h-[500px] w-full overflow-hidden rounded-l-3xl bg-gc-dark-green/10 sm:h-[60vh] sm:w-[42%]">
+          {imageError ? (
+            <div className="flex h-full w-full flex-col items-center justify-center rounded-xl border-2 border-dashed border-gc-gold/40 bg-gc-dark-green/5 p-6 text-center">
+              <span className="text-4xl text-gc-gold/60">⛳</span>
+              <p className="mt-2 text-sm font-medium text-gc-dark-green/70">Loch {hole.nummer}</p>
+              <p className="mt-1 text-xs text-gc-dark-green/50">Grafik in /public/images/course/ hinterlegen</p>
+            </div>
+          ) : (
+            <Image
+              src={hole.imageSrc}
+              alt={`Loch ${hole.nummer} – Kurs ${courseKey}`}
+              fill
+              className="object-cover object-center"
+              onError={() => setImageError(true)}
+              sizes="(max-width: 640px) 100vw, 42vw"
+            />
+          )}
         </div>
 
         {/* Infos */}
         <div className="flex min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6 sm:w-[58%]">
           <h2 id="hole-modal-title" className="text-2xl font-bold text-gc-dark-green">
             Loch {hole.nummer}
+            {hole.name && hole.name !== `Loch ${hole.nummer}` && (
+              <span className="ml-2 text-lg font-normal text-gc-dark-green/70">({hole.name})</span>
+            )}
           </h2>
 
           <div className="grid grid-cols-2 gap-4">
@@ -112,10 +116,42 @@ export default function HoleModal({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gc-gold/20">
-                  <tr><td className="px-3 py-2">Gelb</td><td className="px-3 py-2 font-medium">{hole.distanzen.gelb}</td></tr>
-                  <tr><td className="px-3 py-2">Blau</td><td className="px-3 py-2 font-medium">{hole.distanzen.blau}</td></tr>
-                  <tr><td className="px-3 py-2">Rot</td><td className="px-3 py-2 font-medium">{hole.distanzen.rot}</td></tr>
-                  <tr><td className="px-3 py-2">Orange</td><td className="px-3 py-2 font-medium">{hole.distanzen.orange}</td></tr>
+                  <tr>
+                    <td className="px-3 py-2">
+                      <div className="flex items-center gap-2">
+                        <span className="h-3 w-3 rounded-full bg-yellow-400" />
+                        <span>Gelb</span>
+                      </div>
+                    </td>
+                    <td className="px-3 py-2 font-medium">{hole.yellow}m</td>
+                  </tr>
+                  <tr>
+                    <td className="px-3 py-2">
+                      <div className="flex items-center gap-2">
+                        <span className="h-3 w-3 rounded-full bg-blue-600" />
+                        <span>Blau</span>
+                      </div>
+                    </td>
+                    <td className="px-3 py-2 font-medium">{hole.blue}m</td>
+                  </tr>
+                  <tr>
+                    <td className="px-3 py-2">
+                      <div className="flex items-center gap-2">
+                        <span className="h-3 w-3 rounded-full bg-red-600" />
+                        <span>Rot</span>
+                      </div>
+                    </td>
+                    <td className="px-3 py-2 font-medium">{hole.red}m</td>
+                  </tr>
+                  <tr>
+                    <td className="px-3 py-2">
+                      <div className="flex items-center gap-2">
+                        <span className="h-3 w-3 rounded-full bg-orange-500" />
+                        <span>Orange</span>
+                      </div>
+                    </td>
+                    <td className="px-3 py-2 font-medium">{hole.orange}m</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

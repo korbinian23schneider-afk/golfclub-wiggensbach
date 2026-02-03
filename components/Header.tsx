@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 // Cart-Status für die drei Kurse
 const cartStatus = [
@@ -18,34 +19,35 @@ const navigationItems = [
     children: null,
   },
   {
-    label: "Spielbetrieb",
-    href: null,
-    children: [
-      { href: "/gaeste", label: "Gäste & Greenfee" },
-      { href: "/turniere", label: "Turnierkalender" },
-    ],
-  },
-  {
-    label: "Golfschule",
-    href: null,
-    children: [
-      { href: "/golfschule", label: "Unser Team" },
-      { href: "/kurse", label: "Kursangebot" },
-    ],
-  },
-  {
     label: "Der Club",
     href: null,
     children: [
-      { href: "/aktuelles", label: "Aktuelles" },
-      { href: "/club", label: "Clubinfos" },
-      { href: "/gastronomie", label: "Gastronomie" },
+      { href: "/news", label: "Aktuelles" },
+      { href: "/turniere", label: "Turniere" },
+      { href: "/team", label: "Unser Team" },
     ],
+  },
+  {
+    label: "Gäste & Preise",
+    href: "/gaeste",
+    children: null,
+  },
+  {
+    label: "Golfschule",
+    href: "/golfschule",
+    children: null,
+  },
+  {
+    label: "Gastronomie",
+    href: "/gastronomie",
+    children: null,
   },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 w-full shadow-md">
@@ -132,42 +134,60 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
-            {navigationItems.map((item) => (
-              <div key={item.label} className="relative group">
-                {item.href ? (
+            {navigationItems.map((item) => {
+              const isActive = pathname === item.href || (item.children && item.children.some((child) => pathname === child.href));
+              if (item.href) {
+                return (
                   <Link
+                    key={item.label}
                     href={item.href}
-                    className="text-base font-medium text-gc-dark-green transition hover:text-gc-gold"
+                    className={`text-base font-medium transition ${
+                      isActive
+                        ? "text-gc-gold font-semibold"
+                        : "text-gc-dark-green hover:text-gc-gold"
+                    }`}
                   >
                     {item.label}
                   </Link>
-                ) : (
-                  <>
-                    <button
-                      type="button"
-                      className="text-base font-medium text-gc-dark-green transition hover:text-gc-gold flex items-center gap-1"
-                    >
-                      {item.label}
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    {/* Dropdown Menu */}
-                    <div className="absolute left-0 top-full mt-1 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 bg-white rounded-lg shadow-xl border border-gc-gold/20 overflow-hidden">
-                      {item.children?.map((child) => (
+                );
+              }
+              return (
+                <div key={item.label} className="relative group">
+                  <button
+                    type="button"
+                    className={`text-base font-medium transition flex items-center gap-1 ${
+                      isActive
+                        ? "text-gc-gold font-semibold"
+                        : "text-gc-dark-green hover:text-gc-gold"
+                    }`}
+                  >
+                    {item.label}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {/* Dropdown Menu */}
+                  <div className="absolute left-0 top-full mt-1 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 bg-white rounded-lg shadow-xl border border-gc-gold/20 overflow-hidden">
+                    {item.children?.map((child) => {
+                      const childIsActive = pathname === child.href;
+                      return (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="block px-4 py-3 text-sm text-gc-dark-green hover:bg-gc-gold/10 hover:text-gc-gold transition"
+                          className={`block px-4 py-3 text-sm transition ${
+                            childIsActive
+                              ? "bg-gc-gold/10 text-gc-gold font-semibold"
+                              : "text-gc-dark-green hover:bg-gc-gold/10 hover:text-gc-gold"
+                          }`}
                         >
                           {child.label}
                         </Link>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
-            ))}
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
             {/* Kontakt Button */}
             <Link
               href="/kontakt"
@@ -198,37 +218,75 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-gc-gold/20 bg-white">
             <nav className="px-4 py-4 space-y-2">
-              {navigationItems.map((item) => (
-                <div key={item.label}>
-                  {item.href ? (
+              {navigationItems.map((item) => {
+                const isActive = pathname === item.href || (item.children && item.children.some((child) => pathname === child.href));
+                const isDropdownOpen = mobileDropdownOpen === item.label;
+                
+                if (item.href) {
+                  return (
                     <Link
+                      key={item.label}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="block px-4 py-3 text-base font-medium text-gc-dark-green rounded-lg hover:bg-gc-gold/10 transition"
+                      className={`block px-4 py-3 text-base font-medium rounded-lg transition ${
+                        isActive
+                          ? "bg-gc-gold/20 text-gc-gold font-semibold"
+                          : "text-gc-dark-green hover:bg-gc-gold/10"
+                      }`}
                     >
                       {item.label}
                     </Link>
-                  ) : (
-                    <div>
-                      <div className="px-4 py-3 text-base font-medium text-gc-dark-green">
-                        {item.label}
+                  );
+                }
+                
+                return (
+                  <div key={item.label}>
+                    <button
+                      type="button"
+                      onClick={() => setMobileDropdownOpen(isDropdownOpen ? null : item.label)}
+                      className={`w-full flex items-center justify-between px-4 py-3 text-base font-medium rounded-lg transition ${
+                        isActive
+                          ? "bg-gc-gold/20 text-gc-gold font-semibold"
+                          : "text-gc-dark-green hover:bg-gc-gold/10"
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <svg
+                        className={`w-5 h-5 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {isDropdownOpen && (
+                      <div className="pl-6 space-y-1 mt-1">
+                        {item.children?.map((child) => {
+                          const childIsActive = pathname === child.href;
+                          return (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setMobileDropdownOpen(null);
+                              }}
+                              className={`block px-4 py-2 text-sm rounded-lg transition ${
+                                childIsActive
+                                  ? "bg-gc-gold/20 text-gc-gold font-semibold"
+                                  : "text-gc-dark-green/80 hover:bg-gc-gold/10 hover:text-gc-gold"
+                              }`}
+                            >
+                              {child.label}
+                            </Link>
+                          );
+                        })}
                       </div>
-                      <div className="pl-6 space-y-1">
-                        {item.children?.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="block px-4 py-2 text-sm text-gc-dark-green/80 rounded-lg hover:bg-gc-gold/10 hover:text-gc-gold transition"
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
+                    )}
+                  </div>
+                );
+              })}
               <Link
                 href="/kontakt"
                 onClick={() => setMobileMenuOpen(false)}
