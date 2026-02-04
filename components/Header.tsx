@@ -33,8 +33,8 @@ const navigationItems = [
     children: null,
   },
   {
-    label: "Golfschule",
-    href: "/golfschule",
+    label: "Golfacademy",
+    href: "/academy",
     children: null,
   },
   {

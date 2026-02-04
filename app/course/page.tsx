@@ -73,7 +73,7 @@ export default function CoursePage() {
 
       {/* Loch-Bereich: grün hinterlegt = ausgewählter Kurs */}
       <section
-        className="rounded-b-2xl rounded-tr-2xl bg-[#1b3b2a] p-6 sm:p-8"
+        className="rounded-2xl bg-[#1b3b2a] p-6 sm:p-8"
         aria-label={`Löcher Kurs ${activeCourse} – ${course.name}`}
       >
         {/* Status-Sektion: Cart-Status und Bespielbarkeit */}
