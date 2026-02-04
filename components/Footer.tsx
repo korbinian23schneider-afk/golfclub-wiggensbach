@@ -21,7 +21,7 @@ export default function Footer() {
             <Link href="/gastronomie" className="hover:text-gc-gold">
               Gastronomie
             </Link>
-            <Link href="/golfschule" className="hover:text-gc-gold">
+            <Link href="/academy" className="hover:text-gc-gold">
               Golfschule
             </Link>
           </nav>

@@ -22,18 +22,25 @@ const navigationItems = [
     label: "Der Club",
     href: null,
     children: [
-      { href: "/news", label: "Aktuelles" },
-      { href: "/turniere", label: "Turniere" },
-      { href: "/team", label: "Unser Team" },
+      { href: "/news", label: "Aktuelles", icon: null },
+      { href: "/turniere", label: "Turniere", icon: null },
+      { href: "/membership", label: "Mitgliedschaft", icon: "idCard" },
+      { href: "/team", label: "Unser Team", icon: null },
+      { href: "/partners", label: "Partner & Sponsoren", icon: "handshake" },
+      { href: "/webcam", label: "Webcam & Wetter", icon: "camera" },
     ],
   },
   {
     label: "Gäste & Preise",
-    href: "/gaeste",
-    children: null,
+    href: null,
+    children: [
+      { href: "/gaeste", label: "Greenfee & Preise", icon: null },
+      { href: "/hotels", label: "Partnerhotels", icon: null },
+      { href: "/plus-golf", label: "Oberstaufen PLUS Golf", icon: null },
+    ],
   },
   {
-    label: "Golfacademy",
+    label: "Golfschule",
     href: "/academy",
     children: null,
   },
@@ -167,19 +174,35 @@ export default function Header() {
                     </svg>
                   </button>
                   {/* Dropdown Menu */}
-                  <div className="absolute left-0 top-full mt-1 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 bg-white rounded-lg shadow-xl border border-gc-gold/20 overflow-hidden">
+                  <div className="absolute left-0 top-full mt-1 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 bg-white rounded-lg shadow-xl border border-gc-gold/20 overflow-hidden">
                     {item.children?.map((child) => {
                       const childIsActive = pathname === child.href;
                       return (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className={`block px-4 py-3 text-sm transition ${
+                          className={`flex items-center gap-2 px-4 py-3 text-sm transition ${
                             childIsActive
                               ? "bg-gc-gold/10 text-gc-gold font-semibold"
                               : "text-gc-dark-green hover:bg-gc-gold/10 hover:text-gc-gold"
                           }`}
                         >
+                          {child.icon === "idCard" && (
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+                            </svg>
+                          )}
+                          {child.icon === "handshake" && (
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                          )}
+                          {child.icon === "camera" && (
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                          )}
                           {child.label}
                         </Link>
                       );
@@ -272,12 +295,28 @@ export default function Header() {
                                 setMobileMenuOpen(false);
                                 setMobileDropdownOpen(null);
                               }}
-                              className={`block px-4 py-2 text-sm rounded-lg transition ${
+                              className={`flex items-center gap-2 px-4 py-2 text-sm rounded-lg transition ${
                                 childIsActive
                                   ? "bg-gc-gold/20 text-gc-gold font-semibold"
                                   : "text-gc-dark-green/80 hover:bg-gc-gold/10 hover:text-gc-gold"
                               }`}
                             >
+                              {child.icon === "idCard" && (
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+                                </svg>
+                              )}
+                              {child.icon === "handshake" && (
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                </svg>
+                              )}
+                              {child.icon === "camera" && (
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                              )}
                               {child.label}
                             </Link>
                           );
