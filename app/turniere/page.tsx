@@ -173,7 +173,7 @@ export default function TournamentsPage() {
               {filteredTournaments.map((tournament) => (
                 <div
                   key={tournament.id}
-                  className="overflow-hidden rounded-2xl border-2 border-gc-gold/30 bg-white shadow-lg"
+                  className="overflow-hidden rounded-2xl border-2 border-gc-gold/40 bg-white shadow-lg"
                 >
                   <div className="p-8">
                     <div className="mb-4 flex items-start justify-between">

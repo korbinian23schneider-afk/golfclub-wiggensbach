@@ -20,33 +20,34 @@ export default function CoursePage() {
   return (
     <div>
       {/* Hero-Bereich: Volle Bildschirmhöhe mit Hintergrundbild */}
-      <section className="relative h-screen w-full">
+      <section className="relative h-screen w-full overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=2070&auto=format&fit=crop"
           alt="Golfplatz Panorama in den Alpen"
           fill
           priority
-          className="object-cover"
+          className="object-cover transition-transform duration-[20s] ease-out hover:scale-110"
         />
-        {/* Dunkles Overlay */}
-        <div className="absolute inset-0 bg-black/40" />
+        {/* Mehrschichtige Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gc-dark-green/30 via-transparent to-gc-dark-green/30" />
         {/* Zentrierte Überschrift */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-center text-5xl font-bold text-white sm:text-6xl lg:text-7xl">
+          <h1 className="text-center text-5xl font-bold text-white sm:text-6xl lg:text-7xl drop-shadow-2xl animate-fade-in-up tracking-tight">
             Golfen auf höchstem Niveau
           </h1>
         </div>
       </section>
 
       {/* Bestehender Inhalt */}
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-gc-dark-green">Der Platz</h2>
-        <p className="mt-2 text-gc-dark-green/80">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <h2 className="text-3xl font-bold text-gc-dark-green tracking-tight">Der Platz</h2>
+        <p className="mt-2 text-lg text-gc-dark-green/80 leading-relaxed">
           27 Löcher in drei Runden: Panorama, Illertal und Zugspitz.
         </p>
 
       {/* Tab-Navigation: Reiter-Optik */}
-      <div className="mt-8 flex items-end justify-center gap-0">
+      <div className="mt-10 flex items-end justify-center gap-0">
         {courseKeys.map(({ key, label, subtitle }) => {
           const isActive = activeCourse === key;
           return (
@@ -57,8 +58,8 @@ export default function CoursePage() {
               className={`
                 relative px-12 py-4 text-xl font-medium transition-all duration-300
                 ${isActive
-                  ? "z-10 -translate-y-1 scale-110 rounded-t-2xl bg-[#1b3b2a] font-bold text-white shadow-lg"
-                  : "z-0 rounded-t-xl bg-stone-200 text-gc-dark-green hover:bg-stone-300"
+                  ? "z-10 -translate-y-1 scale-110 rounded-t-2xl bg-gradient-to-b from-[#1b3b2a] to-[#0f2418] font-bold text-white shadow-[0_10px_30px_-10px_rgba(27,59,42,0.4)]"
+                  : "z-0 rounded-t-xl bg-stone-200 text-gc-dark-green hover:bg-stone-300 hover:scale-105"
                 }
               `}
             >
@@ -73,7 +74,7 @@ export default function CoursePage() {
 
       {/* Loch-Bereich: grün hinterlegt = ausgewählter Kurs */}
       <section
-        className="rounded-2xl bg-[#1b3b2a] p-6 sm:p-8"
+        className="rounded-2xl bg-gradient-to-br from-[#1b3b2a] to-[#0f2418] p-6 sm:p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)]"
         aria-label={`Löcher Kurs ${activeCourse} – ${course.name}`}
       >
         {/* Status-Sektion: Cart-Status und Bespielbarkeit */}
@@ -148,7 +149,7 @@ export default function CoursePage() {
               key={hole.id}
               type="button"
               onClick={() => setModalHole(hole)}
-              className="group flex flex-col overflow-hidden rounded-xl border border-gc-gold/40 bg-white text-left shadow-lg transition hover:border-gc-gold hover:shadow-xl"
+              className="group flex flex-col overflow-hidden rounded-xl border border-gc-gold/40 bg-white text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-gc-gold hover:shadow-xl"
             >
               <div className="flex items-center justify-between bg-gc-dark-green/10 px-4 py-3">
                 <div>
@@ -180,9 +181,9 @@ export default function CoursePage() {
                   </div>
                 </div>
               </div>
-              <div className="flex-1 p-4">
-                <p className="line-clamp-2 text-sm text-gc-dark-green/80">{hole.proTipp}</p>
-                <p className="mt-2 text-xs text-gc-gold group-hover:underline">
+              <div className="flex-1 p-5">
+                <p className="line-clamp-2 text-sm text-gc-dark-green/80 leading-relaxed">{hole.proTipp}</p>
+                <p className="mt-3 text-xs font-semibold text-gc-gold group-hover:underline transition-all duration-300 group-hover:translate-x-1 inline-block">
                   Details anzeigen →
                 </p>
               </div>
@@ -191,14 +192,14 @@ export default function CoursePage() {
         </div>
 
         {/* Download-Bereich für Platzregeln */}
-        <div className="mt-8 flex justify-center border-t border-white/20 pt-8">
+        <div className="mt-10 flex justify-center border-t border-white/20 pt-10">
           <a
             href="/platzregeln.pdf"
             download
-            className="group inline-flex items-center gap-3 rounded-lg border-2 border-gc-gold bg-transparent px-8 py-4 font-semibold text-white transition-all hover:bg-gc-gold hover:text-gc-dark-green"
+            className="group inline-flex items-center gap-3 rounded-lg border-2 border-gc-gold bg-transparent px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-gc-gold hover:to-gc-gold-light hover:text-gc-dark-green hover:scale-105 hover:shadow-[0_10px_30px_-10px_rgba(197,160,89,0.5)] active:scale-95"
           >
             <svg
-              className="h-5 w-5 transition-transform group-hover:scale-110"
+              className="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

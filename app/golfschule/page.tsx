@@ -6,7 +6,7 @@ export default function GolfschulePage() {
         Hier finden Sie in Kürze Informationen zu unserer Golfschule, Schnupperkursen
         und Einzelstunden am Golfclub Waldegg-Wiggensbach.
       </p>
-      <div className="mt-8 rounded-xl border border-gc-gold/30 bg-white p-8 text-center text-gc-dark-green/60">
+      <div className="mt-8 rounded-xl border-2 border-gc-gold/40 bg-stone-50 p-8 text-center text-gc-dark-green/80">
         Platzhalter – Inhalt folgt.
       </div>
     </div>

@@ -153,7 +153,7 @@ export default function TeamPage() {
             {activeTeamData.members.map((member, index) => (
               <div
                 key={index}
-                className="group overflow-hidden rounded-2xl border-2 border-gc-gold/30 bg-white shadow-lg transition hover:shadow-xl"
+                className="group overflow-hidden rounded-2xl border-2 border-gc-gold/40 bg-white shadow-lg transition hover:shadow-xl"
               >
                 {/* Bild */}
                 <div className="relative aspect-[3/4] w-full overflow-hidden">

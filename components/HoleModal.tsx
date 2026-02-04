@@ -92,12 +92,12 @@ export default function HoleModal({
           </h2>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-lg bg-gc-dark-green/10 p-3">
-              <span className="text-sm text-gc-dark-green/70">Par</span>
+            <div className="rounded-lg bg-gc-dark-green/15 p-3 border border-gc-dark-green/20">
+              <span className="text-sm text-gc-dark-green/80 font-medium">Par</span>
               <p className="text-xl font-bold text-gc-dark-green">{hole.par}</p>
             </div>
-            <div className="rounded-lg bg-gc-dark-green/10 p-3">
-              <span className="text-sm text-gc-dark-green/70">HCP</span>
+            <div className="rounded-lg bg-gc-dark-green/15 p-3 border border-gc-dark-green/20">
+              <span className="text-sm text-gc-dark-green/80 font-medium">HCP</span>
               <p className="text-xl font-bold text-gc-dark-green">{hole.hcp}</p>
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function HoleModal({
             <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gc-dark-green/70">
               Entfernungen (m)
             </h3>
-            <div className="overflow-hidden rounded-lg border border-gc-gold/30">
+            <div className="overflow-hidden rounded-lg border border-gc-gold/40">
               <table className="w-full text-left text-sm">
                 <thead>
                   <tr className="bg-gc-gold/20">
@@ -158,11 +158,11 @@ export default function HoleModal({
           </div>
 
           {/* Pro-Tipp */}
-          <div className="rounded-lg border border-gc-gold/30 bg-gc-gold/10 p-4">
+          <div className="rounded-lg border-2 border-gc-gold/40 bg-gc-gold/20 p-4">
             <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gc-gold">
               Pro-Tipp
             </h3>
-            <p className="text-gc-dark-green/90">{hole.proTipp}</p>
+            <p className="text-gc-dark-green">{hole.proTipp}</p>
           </div>
 
           {/* Navigation Vorheriges/Nächstes Loch */}

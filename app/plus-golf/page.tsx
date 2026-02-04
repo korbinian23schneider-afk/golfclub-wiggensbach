@@ -103,7 +103,7 @@ export default function PlusGolfPage() {
       {/* Vorteile-Box */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-xl border border-gc-gold/30 bg-gc-gold/5 p-8 shadow-sm">
+          <div className="rounded-xl border-2 border-gc-gold/40 bg-gc-gold/15 p-8 shadow-sm">
             <h2 className="mb-6 text-center text-2xl font-bold text-gc-dark-green sm:text-3xl">
               Ihre Vorteile mit Oberstaufen PLUS Golf
             </h2>

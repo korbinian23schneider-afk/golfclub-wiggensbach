@@ -112,7 +112,7 @@ export default function GuestsPage() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b-2 border-gc-gold/30 bg-gc-dark-green/5">
+                  <tr className="border-b-2 border-gc-gold/40 bg-gc-dark-green/10">
                     <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wide text-gc-dark-green">
                       Kategorie
                     </th>
@@ -216,10 +216,10 @@ export default function GuestsPage() {
             {faqItems.map((item, index) => (
               <div
                 key={index}
-                className="rounded-xl border border-gc-gold/30 bg-gc-dark-green/5 p-6"
+                className="rounded-xl border-2 border-gc-gold/40 bg-stone-50 p-6 shadow-sm"
               >
                 <h3 className="mb-2 text-lg font-bold text-gc-dark-green">{item.question}</h3>
-                <p className="text-gc-dark-green/80">{item.answer}</p>
+                <p className="text-gc-dark-green/90">{item.answer}</p>
               </div>
             ))}
           </div>

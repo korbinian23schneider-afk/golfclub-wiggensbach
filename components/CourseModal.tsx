@@ -177,7 +177,7 @@ export default function CourseModal({ course, onClose }: CourseModalProps) {
           </ul>
 
           {/* Details */}
-          <div className="mt-8 rounded-lg border border-gc-gold/30 bg-gc-gold/5 p-6">
+          <div className="mt-8 rounded-lg border-2 border-gc-gold/40 bg-gc-gold/15 p-6">
             <div className="prose prose-sm max-w-none text-gc-dark-green">
               {formatDetails(course.details)}
             </div>

@@ -40,21 +40,21 @@ export default function AcademyPage() {
       </section>
 
       {/* Highlight-Sektion "Der Einstieg" */}
-      <section className="bg-stone-100 py-16">
+      <section className="bg-stone-100 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold text-gc-dark-green sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold text-gc-dark-green sm:text-4xl tracking-tight mb-16">
             Golf lernen im Allgäu
           </h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
+          <div className="grid gap-8 lg:gap-12 md:grid-cols-2">
             {courses.map((course) => (
               <button
                 key={course.id}
                 type="button"
                 onClick={() => setSelectedCourse(course)}
-                className="group relative overflow-hidden rounded-2xl border border-[#1b3b2a]/30 bg-white p-8 text-left shadow-md transition-all hover:-translate-y-1 hover:shadow-xl cursor-pointer"
+                className="group relative overflow-hidden rounded-2xl border-2 border-[#1b3b2a]/20 bg-white p-8 lg:p-10 text-left shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 hover:-translate-y-2 hover:border-gc-gold/50 hover:shadow-[0_20px_50px_-12px_rgba(27,59,42,0.3)] cursor-pointer"
               >
-                <h3 className="text-2xl font-bold text-gc-dark-green">{course.title}</h3>
-                <p className="mt-3 text-gc-dark-green/80">{course.description}</p>
+                <h3 className="text-2xl font-bold text-gc-dark-green transition-colors duration-300 group-hover:text-gc-gold">{course.title}</h3>
+                <p className="mt-3 text-gc-dark-green/80 leading-relaxed">{course.description}</p>
                 <div className="mt-6 flex items-baseline gap-2">
                   {course.originalPrice && (
                     <span className="text-lg text-gc-dark-green/50 line-through">
@@ -65,11 +65,11 @@ export default function AcademyPage() {
                     {course.priceDisplay || `${course.price},- €`}
                   </span>
                 </div>
-                <ul className="mt-6 space-y-2">
+                <ul className="mt-6 space-y-2.5">
                   {course.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-gc-dark-green/80">
                       <svg
-                        className="h-5 w-5 flex-shrink-0 text-gc-gold"
+                        className="h-5 w-5 flex-shrink-0 text-gc-gold transition-transform duration-300 group-hover:scale-110"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -85,10 +85,10 @@ export default function AcademyPage() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8 flex items-center justify-between text-gc-gold group-hover:text-gc-dark-green transition-colors">
+                <div className="mt-8 flex items-center justify-between text-gc-gold group-hover:text-gc-dark-green transition-all duration-300">
                   <span className="font-semibold">Details anzeigen</span>
                   <svg
-                    className="h-5 w-5 transition-transform group-hover:translate-x-1"
+                    className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-2"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -108,16 +108,16 @@ export default function AcademyPage() {
       </section>
 
       {/* Sektion "Individuelles Training" */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold text-gc-dark-green sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold text-gc-dark-green sm:text-4xl tracking-tight mb-16">
             Ihr Pro-Team
           </h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
+          <div className="grid gap-8 lg:gap-12 md:grid-cols-2">
             {pros.map((pro) => (
               <div
                 key={pro.id}
-                className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-lg transition-shadow hover:shadow-xl"
+                className="overflow-hidden rounded-2xl border-2 border-stone-200 bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(27,59,42,0.25)] hover:-translate-y-2 hover:border-gc-gold/30"
               >
                 <div className="flex flex-col sm:flex-row">
                   {/* Platzhalter für Bild */}
@@ -138,24 +138,24 @@ export default function AcademyPage() {
                       </svg>
                     </div>
                   </div>
-                  <div className="flex-1 p-6">
-                    <h3 className="text-2xl font-bold text-gc-dark-green">{pro.name}</h3>
-                    <p className="mt-2 text-gc-dark-green/70">{pro.qualification}</p>
+                  <div className="flex-1 p-6 lg:p-8">
+                    <h3 className="text-2xl font-bold text-gc-dark-green transition-colors duration-300 hover:text-gc-gold">{pro.name}</h3>
+                    <p className="mt-2 text-gc-dark-green/70 leading-relaxed">{pro.qualification}</p>
                     <div className="mt-4 flex flex-wrap gap-4">
-                      <div>
+                      <div className="transition-transform duration-300 hover:scale-105">
                         <span className="text-sm text-gc-dark-green/60">30 Min:</span>
                         <span className="ml-2 text-lg font-semibold text-gc-dark-green">
                           {pro.price30min},- €
                         </span>
                       </div>
-                      <div>
+                      <div className="transition-transform duration-300 hover:scale-105">
                         <span className="text-sm text-gc-dark-green/60">60 Min:</span>
                         <span className="ml-2 text-lg font-semibold text-gc-dark-green">
                           {pro.price60min},- €
                         </span>
                       </div>
                     </div>
-                    <p className="mt-4 text-sm text-gc-dark-green/80">{pro.speciality}</p>
+                    <p className="mt-4 text-sm text-gc-dark-green/80 leading-relaxed">{pro.speciality}</p>
                   </div>
                 </div>
               </div>
@@ -165,18 +165,18 @@ export default function AcademyPage() {
       </section>
 
       {/* Sektion "Jugend & Förderung" */}
-      <section className="bg-gc-dark-green py-16">
+      <section className="bg-gradient-to-br from-gc-dark-green to-[#0f2418] py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold text-white sm:text-4xl tracking-tight drop-shadow-lg">
             Partnerclub Jugend des BGV
           </h2>
-          <p className="mt-4 text-lg text-white/90">
+          <p className="mt-4 text-lg text-white/95 leading-relaxed max-w-3xl mx-auto">
             Wiggensbach ist stolzer Stützpunkt für den Nachwuchs. Wir fördern Kinder und
             Jugendliche aktiv im Sport.
           </p>
           <a
             href="mailto:info@golf-wiggensbach.de?subject=Anfrage Trainingszeiten Jugend"
-            className="mt-8 inline-block rounded-lg bg-gc-gold px-8 py-3 font-semibold text-white transition-colors hover:bg-gc-gold-light"
+            className="mt-8 inline-block rounded-lg bg-gradient-to-r from-gc-gold to-gc-gold-light px-8 py-3 font-semibold text-white shadow-[0_10px_30px_-10px_rgba(197,160,89,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_-10px_rgba(197,160,89,0.6)] active:scale-95"
           >
             Trainingszeiten anfragen
           </a>
@@ -184,18 +184,18 @@ export default function AcademyPage() {
       </section>
 
       {/* Call-to-Action Leiste (Sticky/Unten) */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-stone-200 bg-white shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-stone-200 bg-white/95 backdrop-blur-md shadow-[0_-4px_20px_-2px_rgba(0,0,0,0.15)]">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-center text-gc-dark-green sm:text-left">
+            <p className="text-center text-gc-dark-green sm:text-left font-medium">
               Noch Fragen zum Training?
             </p>
             <a
               href="tel:+49837093073"
-              className="flex items-center gap-2 rounded-lg bg-gc-dark-green px-6 py-3 font-semibold text-white transition-colors hover:bg-gc-dark-green/90"
+              className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-gc-dark-green to-[#0f2418] px-6 py-3 font-semibold text-white shadow-[0_10px_30px_-10px_rgba(27,59,42,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_-10px_rgba(27,59,42,0.6)] active:scale-95"
             >
               <svg
-                className="h-5 w-5"
+                className="h-5 w-5 transition-transform duration-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

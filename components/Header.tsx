@@ -57,7 +57,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full shadow-md">
+    <header className="sticky top-0 z-50 w-full shadow-[0_4px_20px_-2px_rgba(0,0,0,0.15)]">
       {/* Top-Bar: Dunkelgrün, schmal, rechtsbündig */}
       <div className="bg-[#1b3b2a]">
         <div className="mx-auto flex max-w-full items-center justify-end gap-4 px-4 py-2 sm:px-6 lg:px-12">
@@ -97,10 +97,10 @@ export default function Header() {
                 <span className="hidden sm:inline">Kurs {course}</span>
                 {/* Status-Punkt */}
                 <span
-                  className={`h-2 w-2 rounded-full ${
+                  className={`h-2 w-2 rounded-full transition-all duration-300 ${
                     status === "green"
-                      ? "bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.8)]"
-                      : "bg-red-500"
+                      ? "bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.9)] animate-pulse"
+                      : "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]"
                   }`}
                   aria-label={`Status: ${status === "green" ? "Grün" : "Rot"}`}
                 />
@@ -108,9 +108,9 @@ export default function Header() {
             ))}
           </div>
           {/* Platz-Status-Ampel (Grün) */}
-          <div className="flex items-center gap-2 rounded-full border border-gc-gold/30 bg-gc-dark-green px-2 py-1 sm:px-3">
+          <div className="flex items-center gap-2 rounded-full border border-gc-gold/30 bg-gc-dark-green px-2 py-1 sm:px-3 transition-all duration-300 hover:border-gc-gold/50 hover:shadow-[0_0_10px_rgba(197,160,89,0.3)]">
             <span
-              className="h-2 w-2 rounded-full bg-gc-status-green shadow-[0_0_6px_rgba(34,197,94,0.6)]"
+              className="h-2 w-2 rounded-full bg-gc-status-green shadow-[0_0_8px_rgba(34,197,94,0.8)] animate-pulse"
               title="Platz frei bespielbar"
               aria-label="Platzstatus: Grün"
             />
@@ -122,19 +122,19 @@ export default function Header() {
       </div>
 
       {/* Main-Navigation: Weiß/Creme, Logo links, Navigation rechts */}
-      <div className="bg-[#faf9f6] border-b border-gc-gold/20">
+      <div className="bg-[#faf9f6] border-b border-gc-gold/20 shadow-sm">
         <div className="mx-auto flex max-w-full items-center justify-between px-4 py-4 sm:px-6 lg:px-12">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 transition-transform duration-300 hover:scale-105">
             <Image
               src="/images/logo.png"
               alt="Golfclub Waldegg-Wiggensbach Logo"
               width={80}
               height={80}
-              className="h-16 w-auto sm:h-20"
+              className="h-16 w-auto sm:h-20 transition-transform duration-300"
               priority
             />
-            <span className="hidden text-lg font-semibold text-gc-dark-green sm:inline">
+            <span className="hidden text-lg font-semibold text-gc-dark-green sm:inline transition-colors duration-300 hover:text-gc-gold">
               Golfclub Waldegg-Wiggensbach
             </span>
           </Link>
@@ -148,13 +148,16 @@ export default function Header() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className={`text-base font-medium transition ${
+                    className={`relative text-base font-medium transition-all duration-300 ${
                       isActive
                         ? "text-gc-gold font-semibold"
                         : "text-gc-dark-green hover:text-gc-gold"
                     }`}
                   >
                     {item.label}
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gc-gold rounded-full" />
+                    )}
                   </Link>
                 );
               }
@@ -162,29 +165,32 @@ export default function Header() {
                 <div key={item.label} className="relative group">
                   <button
                     type="button"
-                    className={`text-base font-medium transition flex items-center gap-1 ${
+                    className={`relative text-base font-medium transition-all duration-300 flex items-center gap-1 ${
                       isActive
                         ? "text-gc-gold font-semibold"
                         : "text-gc-dark-green hover:text-gc-gold"
                     }`}
                   >
                     {item.label}
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gc-gold rounded-full" />
+                    )}
+                    <svg className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
                   {/* Dropdown Menu */}
-                  <div className="absolute left-0 top-full mt-1 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 bg-white rounded-lg shadow-xl border border-gc-gold/20 overflow-hidden">
+                  <div className="absolute left-0 top-full mt-1 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-white rounded-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] border border-gc-gold/20 overflow-hidden backdrop-blur-sm">
                     {item.children?.map((child) => {
                       const childIsActive = pathname === child.href;
                       return (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className={`flex items-center gap-2 px-4 py-3 text-sm transition ${
+                          className={`flex items-center gap-2 px-4 py-3 text-sm transition-all duration-300 ${
                             childIsActive
                               ? "bg-gc-gold/10 text-gc-gold font-semibold"
-                              : "text-gc-dark-green hover:bg-gc-gold/10 hover:text-gc-gold"
+                              : "text-gc-dark-green hover:bg-gc-gold/10 hover:text-gc-gold hover:translate-x-1"
                           }`}
                         >
                           {child.icon === "idCard" && (
@@ -214,7 +220,7 @@ export default function Header() {
             {/* Kontakt Button */}
             <Link
               href="/kontakt"
-              className="rounded-lg bg-gc-gold px-5 py-2.5 text-base font-medium text-white transition hover:bg-gc-gold-light shadow-md"
+              className="rounded-lg bg-gradient-to-r from-gc-gold to-gc-gold-light px-5 py-2.5 text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_30px_-10px_rgba(197,160,89,0.5)] active:scale-95 shadow-md"
             >
               Kontakt
             </Link>
@@ -224,10 +230,10 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-gc-dark-green"
+            className="lg:hidden p-2 text-gc-dark-green transition-all duration-300 hover:scale-110 active:scale-95"
             aria-label="Menü öffnen"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -329,7 +335,7 @@ export default function Header() {
               <Link
                 href="/kontakt"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block mt-4 px-4 py-3 text-center rounded-lg bg-gc-gold text-base font-medium text-white transition hover:bg-gc-gold-light"
+                className="block mt-4 px-4 py-3 text-center rounded-lg bg-gradient-to-r from-gc-gold to-gc-gold-light text-base font-medium text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
               >
                 Kontakt
               </Link>
