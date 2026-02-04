@@ -46,37 +46,44 @@ export default function CoursePage() {
           27 Löcher in drei Runden: Panorama, Illertal und Zugspitz.
         </p>
 
-      {/* Tab-Navigation: Reiter-Optik */}
-      <div className="mt-10 flex items-end justify-center gap-0">
-        {courseKeys.map(({ key, label, subtitle }) => {
-          const isActive = activeCourse === key;
-          return (
-            <button
-              key={key}
-              type="button"
-              onClick={() => setActiveCourse(key)}
-              className={`
-                relative px-12 py-4 text-xl font-medium transition-all duration-300
-                ${isActive
-                  ? "z-20 -translate-y-1 scale-110 rounded-t-2xl bg-gradient-to-b from-[#1b3b2a] to-[#0f2418] font-bold text-white shadow-[0_10px_30px_-10px_rgba(27,59,42,0.4)]"
-                  : "z-10 rounded-t-xl bg-stone-200 text-gc-dark-green hover:bg-stone-300"
-                }
-              `}
-            >
-              <span className="block">{label}</span>
-              <span className={`block text-sm ${isActive ? "text-white/85" : "text-gc-dark-green/70"}`}>
-                {subtitle}
-              </span>
-            </button>
-          );
-        })}
-      </div>
+        {/* Haupt-Container: Integrierte Card-Komponente */}
+        <div className="mt-10 mx-auto max-w-4xl w-full rounded-3xl shadow-xl overflow-hidden bg-[#1b3b2a]">
+          {/* Header: Die Tab-Leiste */}
+          <div className="flex w-full bg-stone-100">
+            {courseKeys.map(({ key, label, subtitle }) => {
+              const isActive = activeCourse === key;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setActiveCourse(key)}
+                  className={`
+                    flex-1 w-0 py-5 text-center transition-colors duration-300 ease-out
+                    flex flex-col items-center justify-center gap-1
+                    ${isActive
+                      ? "bg-[#1b3b2a] text-white"
+                      : "bg-stone-100 text-stone-500 hover:bg-stone-200 hover:text-stone-800"
+                    }
+                  `}
+                >
+                  {/* Kurs Name (z.B. Kurs A) */}
+                  <span className="text-lg font-bold leading-none">
+                    {label}
+                  </span>
+                  {/* Subtitle (z.B. Panorama) */}
+                  <span className={`text-xs uppercase tracking-wider ${isActive ? "text-gc-gold" : "text-stone-400"}`}>
+                    {subtitle}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
 
-      {/* Loch-Bereich: grün hinterlegt = ausgewählter Kurs */}
-      <section
-        className="rounded-b-2xl rounded-t-none bg-gradient-to-b from-[#0f2418] via-[#1b3b2a] to-[#0f2418] p-6 sm:p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] -mt-1"
-        aria-label={`Löcher Kurs ${activeCourse} – ${course.name}`}
-      >
+          {/* Body: Der Inhalt (Loch-Info) */}
+          <section
+            className="bg-[#1b3b2a] p-6 sm:p-8 text-white"
+            aria-label={`Löcher Kurs ${activeCourse} – ${course.name}`}
+          >
         {/* Status-Sektion: Cart-Status und Bespielbarkeit */}
         <div className="mb-6 flex flex-col gap-4 border-b border-white/20 pb-6 sm:flex-row sm:items-center sm:justify-between">
           {/* Element A: Cart-Ampel */}
@@ -215,6 +222,7 @@ export default function CoursePage() {
           </a>
         </div>
       </section>
+        </div>
 
       {modalHole && (
         <HoleModal
