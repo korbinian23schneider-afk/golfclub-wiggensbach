@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useContact } from "@/app/context/contact-context";
 
 // Öffnungszeiten des Sekretariats (editierbar)
 const openingHours = "Täglich geöffnet von 09:00 bis 17:00 Uhr";
@@ -52,6 +55,8 @@ const weeklySchedule = [
 ];
 
 export default function Home() {
+  const { openContact } = useContact();
+
   return (
     <div>
       {/* Hero – emotional, Alpine Luxury */}
@@ -77,12 +82,12 @@ export default function Home() {
             >
               Zum Platz
             </Link>
-            <a
-              href="tel:+49837093073"
+            <button
+              onClick={openContact}
               className="inline-flex items-center gap-2 rounded-lg border-2 border-gc-gold/80 bg-transparent px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:border-gc-gold hover:bg-gc-gold/20 hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] active:scale-95"
             >
               Startzeit anfragen
-            </a>
+            </button>
           </div>
         </div>
       </section>

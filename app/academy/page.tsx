@@ -3,9 +3,12 @@
 import { useState } from "react";
 import { pros, courses, type Course } from "@/lib/academyData";
 import CourseModal from "@/components/CourseModal";
+import { useContact } from "@/app/context/contact-context";
 
 export default function AcademyPage() {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const { openContact } = useContact();
+
   return (
     <div>
       {/* Hero-Sektion */}
@@ -174,12 +177,12 @@ export default function AcademyPage() {
             Wiggensbach ist stolzer Stützpunkt für den Nachwuchs. Wir fördern Kinder und
             Jugendliche aktiv im Sport.
           </p>
-          <a
-            href="mailto:info@golf-wiggensbach.de?subject=Anfrage Trainingszeiten Jugend"
+          <button
+            onClick={openContact}
             className="mt-8 inline-block rounded-lg bg-gradient-to-r from-gc-gold to-gc-gold-light px-8 py-3 font-semibold text-white shadow-[0_10px_30px_-10px_rgba(197,160,89,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_-10px_rgba(197,160,89,0.6)] active:scale-95"
           >
             Trainingszeiten anfragen
-          </a>
+          </button>
         </div>
       </section>
 

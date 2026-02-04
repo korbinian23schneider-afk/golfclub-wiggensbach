@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useContact } from "@/app/context/contact-context";
 
 const partnerHotels = [
   {
@@ -123,12 +124,12 @@ export default function HotelsPage() {
                     >
                       Zur Hotel-Website
                     </a>
-                    <a
-                      href={`mailto:${hotel.email}?subject=Golf-Arrangement Anfrage&body=Guten Tag,%0D%0A%0D%0AIch interessiere mich für ein Golf-Arrangement.`}
+                    <button
+                      onClick={openContact}
                       className="rounded-lg bg-gc-dark-green px-4 py-2 text-center text-sm font-semibold text-white transition-colors hover:bg-gc-dark-green/90"
                     >
                       Arrangement anfragen
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

@@ -58,8 +58,8 @@ export default function CoursePage() {
               className={`
                 relative px-12 py-4 text-xl font-medium transition-all duration-300
                 ${isActive
-                  ? "z-10 -translate-y-1 scale-110 rounded-t-2xl bg-gradient-to-b from-[#1b3b2a] to-[#0f2418] font-bold text-white shadow-[0_10px_30px_-10px_rgba(27,59,42,0.4)]"
-                  : "z-0 rounded-t-xl bg-stone-200 text-gc-dark-green hover:bg-stone-300 hover:scale-105"
+                  ? "z-20 -translate-y-1 scale-110 rounded-t-2xl bg-gradient-to-b from-[#1b3b2a] to-[#0f2418] font-bold text-white shadow-[0_10px_30px_-10px_rgba(27,59,42,0.4)]"
+                  : "z-10 rounded-t-xl bg-stone-200 text-gc-dark-green hover:bg-stone-300"
                 }
               `}
             >
@@ -74,7 +74,7 @@ export default function CoursePage() {
 
       {/* Loch-Bereich: grün hinterlegt = ausgewählter Kurs */}
       <section
-        className="rounded-2xl bg-gradient-to-br from-[#1b3b2a] to-[#0f2418] p-6 sm:p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)]"
+        className="rounded-b-2xl rounded-t-none bg-gradient-to-b from-[#0f2418] via-[#1b3b2a] to-[#0f2418] p-6 sm:p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] -mt-1"
         aria-label={`Löcher Kurs ${activeCourse} – ${course.name}`}
       >
         {/* Status-Sektion: Cart-Status und Bespielbarkeit */}

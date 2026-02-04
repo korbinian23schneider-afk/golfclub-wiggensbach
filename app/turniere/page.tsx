@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useContact } from "@/app/context/contact-context";
 
 // Turnier-Daten (leicht editierbar)
 const tournaments = [
@@ -56,6 +57,7 @@ const emailAddress = "info@golf-wiggensbach.de";
 
 export default function TournamentsPage() {
   const [filter, setFilter] = useState<"all" | "open" | "closed" | "finished">("all");
+  const { openContact } = useContact();
 
   const filteredTournaments =
     filter === "all"
@@ -196,8 +198,8 @@ export default function TournamentsPage() {
                     <div className="border-t border-gc-gold/20 pt-6">
                       {tournament.status === "open" ? (
                         <>
-                          <a
-                            href={`mailto:${emailAddress}?subject=Anmeldung: ${encodeURIComponent(tournament.title)}`}
+                          <button
+                            onClick={openContact}
                             className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gc-gold px-6 py-3 font-semibold text-gc-dark-green transition hover:bg-gc-gold-light"
                           >
                             <svg
@@ -214,15 +216,15 @@ export default function TournamentsPage() {
                               />
                             </svg>
                             Per E-Mail anmelden
-                          </a>
+                          </button>
                           <p className="mt-3 text-center text-xs text-stone-500">
                             Alternativ: Liste im Clubhaus oder{" "}
-                            <a
-                              href="tel:+49837093073"
+                            <button
+                              onClick={openContact}
                               className="text-gc-gold hover:underline"
                             >
                               Telefon
-                            </a>
+                            </button>
                           </p>
                         </>
                       ) : tournament.status === "closed" ? (
@@ -230,8 +232,8 @@ export default function TournamentsPage() {
                           Anmeldung geschlossen
                         </div>
                       ) : (
-                        <a
-                          href={`mailto:${emailAddress}?subject=Ergebnisse anfragen: ${encodeURIComponent(tournament.title)}`}
+                        <button
+                          onClick={openContact}
                           className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-stone-200 px-6 py-3 font-semibold text-gc-dark-green transition hover:bg-stone-300"
                         >
                           <svg
@@ -248,7 +250,7 @@ export default function TournamentsPage() {
                             />
                           </svg>
                           Ergebnisse anfragen
-                        </a>
+                        </button>
                       )}
                     </div>
                   </div>

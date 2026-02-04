@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { useContact } from "@/app/context/contact-context";
 
 // Cart-Status für die drei Kurse
 const cartStatus = [
@@ -55,6 +56,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
   const pathname = usePathname();
+  const { openContact } = useContact();
 
   return (
     <header className="sticky top-0 z-50 w-full shadow-[0_4px_20px_-2px_rgba(0,0,0,0.15)]">
@@ -218,12 +220,13 @@ export default function Header() {
               );
             })}
             {/* Kontakt Button */}
-            <Link
-              href="/kontakt"
+            <button
+              type="button"
+              onClick={openContact}
               className="rounded-lg bg-gradient-to-r from-gc-gold to-gc-gold-light px-5 py-2.5 text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_30px_-10px_rgba(197,160,89,0.5)] active:scale-95 shadow-md"
             >
               Kontakt
-            </Link>
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -332,13 +335,16 @@ export default function Header() {
                   </div>
                 );
               })}
-              <Link
-                href="/kontakt"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block mt-4 px-4 py-3 text-center rounded-lg bg-gradient-to-r from-gc-gold to-gc-gold-light text-base font-medium text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openContact();
+                }}
+                className="block w-full mt-4 px-4 py-3 text-center rounded-lg bg-gradient-to-r from-gc-gold to-gc-gold-light text-base font-medium text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
               >
                 Kontakt
-              </Link>
+              </button>
             </nav>
           </div>
         )}

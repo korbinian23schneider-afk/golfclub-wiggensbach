@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 import type { Course } from "@/lib/academyData";
+import { useContact } from "@/app/context/contact-context";
+import type React from "react";
 
 interface CourseModalProps {
   course: Course;
@@ -9,6 +11,8 @@ interface CourseModalProps {
 }
 
 export default function CourseModal({ course, onClose }: CourseModalProps) {
+  const { openContact } = useContact();
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -20,7 +24,7 @@ export default function CourseModal({ course, onClose }: CourseModalProps) {
   // Formatierung der Details mit Unterstützung für Bullet-Points
   const formatDetails = (text: string) => {
     const lines = text.split("\n");
-    const elements: JSX.Element[] = [];
+    const elements: React.ReactElement[] = [];
     let inList = false;
     let listItems: string[] = [];
 
@@ -184,12 +188,15 @@ export default function CourseModal({ course, onClose }: CourseModalProps) {
           </div>
 
           {/* Buchen-Button */}
-          <a
-            href={course.buttonLink}
+          <button
+            onClick={() => {
+              openContact();
+              onClose();
+            }}
             className="mt-8 block w-full rounded-lg bg-gc-dark-green px-6 py-3 text-center font-semibold text-white transition-colors hover:bg-gc-dark-green/90"
           >
             {course.buttonText}
-          </a>
+          </button>
         </div>
       </div>
     </div>

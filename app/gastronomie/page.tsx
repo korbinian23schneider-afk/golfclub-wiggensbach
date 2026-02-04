@@ -1,10 +1,7 @@
-import Image from "next/image";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Gastronomie – Ihre Players Lounge",
-  description: "Genuss im eigenen Rhythmus – flexibel & vertraut. Unsere Honesty Bar im Golfclub Waldegg-Wiggensbach.",
-};
+import Image from "next/image";
+import { useContact } from "@/app/context/contact-context";
 
 const steps = [
   {
@@ -58,6 +55,8 @@ const menuCards = [
 ];
 
 export default function GastronomiePage() {
+  const { openContact } = useContact();
+
   return (
     <div>
       {/* Hero-Sektion */}
@@ -227,8 +226,8 @@ export default function GastronomiePage() {
                 <p className="mb-6 text-white/90">
                   Für größere Gruppen oder Events organisieren wir gerne ein Catering auf Anfrage.
                 </p>
-                <a
-                  href="mailto:info@golf-wiggensbach.de?subject=Gastronomie: Event-Catering Anfrage"
+                <button
+                  onClick={openContact}
                   className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-gc-gold to-gc-gold-light px-8 py-3.5 font-semibold text-gc-dark-green shadow-[0_10px_30px_-10px_rgba(197,160,89,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_-10px_rgba(197,160,89,0.6)] active:scale-95"
                 >
                   <svg
@@ -245,7 +244,7 @@ export default function GastronomiePage() {
                     />
                   </svg>
                   Event anfragen
-                </a>
+                </button>
               </div>
 
               <div className="pt-6 border-t border-white/20">
