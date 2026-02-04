@@ -47,6 +47,8 @@ const partnerHotels = [
 ];
 
 export default function HotelsPage() {
+  const { openContact } = useContact();
+
   return (
     <div>
       {/* Hero-Sektion */}
