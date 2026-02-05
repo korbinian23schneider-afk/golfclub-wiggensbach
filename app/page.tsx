@@ -229,7 +229,8 @@ export default function Home() {
             Wochenübersicht & Platzbelegung
           </h2>
           
-          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-7">
+          <div className="rounded-2xl border-2 border-gc-gold/30 bg-white p-6 shadow-xl sm:p-8">
+            <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-7">
             {weeklySchedule.map((schedule, index) => (
               <div
                 key={index}
@@ -266,6 +267,7 @@ export default function Home() {
                 )}
               </div>
             ))}
+            </div>
           </div>
         </div>
       </section>

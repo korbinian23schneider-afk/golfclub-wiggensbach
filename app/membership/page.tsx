@@ -60,7 +60,7 @@ export default function MembershipPage() {
                       <p>Ideal für Einsteiger & Unentschlossene. Ein Jahr volles Spielrecht zum Testen ohne langfristige Bindung.</p>
                     </td>
                     <td className="border border-[#1b3b2a]/30 px-6 py-4 text-right">
-                      <span className="font-bold text-gc-dark-green">1.285,- €</span>
+                      <span className="font-bold text-gc-dark-green whitespace-nowrap">1.285,- €</span>
                     </td>
                   </tr>
 
@@ -70,10 +70,10 @@ export default function MembershipPage() {
                       <span className="font-bold text-gc-dark-green">Aktive Vollmitgliedschaft</span>
                     </td>
                     <td className="border border-[#1b3b2a]/30 px-6 py-4 text-gc-dark-green/80">
-                      <p>Für Vielgolfer & Einheimische. Grenzenloses Golfen auf allen Kursen. Inkl. DGV-Ausweis & Stimmrecht. (Ehepartner: 1.285,- €)</p>
+                      <p>Für Vielgolfer & Einheimische. Grenzenloses Golfen auf allen Kursen. Inkl. DGV-Ausweis & Stimmrecht. (Ehepartner: <span className="whitespace-nowrap">1.285,- €</span>)</p>
                     </td>
                     <td className="border border-[#1b3b2a]/30 px-6 py-4 text-right">
-                      <span className="font-bold text-gc-dark-green">1.580,- €</span>
+                      <span className="font-bold text-gc-dark-green whitespace-nowrap">1.580,- €</span>
                     </td>
                   </tr>
 
@@ -85,13 +85,13 @@ export default function MembershipPage() {
                     <td className="border border-[#1b3b2a]/30 px-6 py-4 text-gc-dark-green/80">
                       <p className="mb-2">Für Gäste ab 50km Entfernung.</p>
                       <ul className="space-y-1 text-sm">
-                        <li>• Modell I (50-100km): 1.285,- €</li>
-                        <li>• Modell II (100-150km): 850,- €</li>
-                        <li>• Modell III (&gt;150km): 425,- €</li>
+                        <li>• Modell I (50-100km): <span className="whitespace-nowrap">1.285,- €</span></li>
+                        <li>• Modell II (100-150km): <span className="whitespace-nowrap">850,- €</span></li>
+                        <li>• Modell III (&gt;150km): <span className="whitespace-nowrap">425,- €</span></li>
                       </ul>
                     </td>
                     <td className="border border-[#1b3b2a]/30 px-6 py-4 text-right">
-                      <span className="font-bold text-gc-dark-green">ab 425,- €</span>
+                      <span className="font-bold text-gc-dark-green whitespace-nowrap">ab 425,- €</span>
                     </td>
                   </tr>
 
@@ -102,13 +102,13 @@ export default function MembershipPage() {
                     </td>
                     <td className="border border-[#1b3b2a]/30 px-6 py-4 text-gc-dark-green/80">
                       <ul className="space-y-1 text-sm">
-                        <li>• Jugendliche (bis 18J): 170,- €</li>
-                        <li>• Ausbildung/Studium (bis 27J): 425,- €</li>
-                        <li>• Young Professionals (bis 30J): 850,- €</li>
+                        <li>• Jugendliche (bis 18J): <span className="whitespace-nowrap">170,- €</span></li>
+                        <li>• Ausbildung/Studium (bis 27J): <span className="whitespace-nowrap">425,- €</span></li>
+                        <li>• Young Professionals (bis 30J): <span className="whitespace-nowrap">850,- €</span></li>
                       </ul>
                     </td>
                     <td className="border border-[#1b3b2a]/30 px-6 py-4 text-right">
-                      <span className="font-bold text-gc-dark-green">ab 170,- €</span>
+                      <span className="font-bold text-gc-dark-green whitespace-nowrap">ab 170,- €</span>
                     </td>
                   </tr>
                 </tbody>
@@ -122,11 +122,11 @@ export default function MembershipPage() {
             <ul className="space-y-3">
               <li className="flex items-center justify-between border-b border-gc-gold/20 pb-3">
                 <span className="text-gc-dark-green">Zweitmitgliedschaft</span>
-                <span className="font-bold text-gc-dark-green">850,- €</span>
+                <span className="font-bold text-gc-dark-green whitespace-nowrap">850,- €</span>
               </li>
               <li className="flex items-center justify-between">
                 <span className="text-gc-dark-green">Schränke (Caddybox)</span>
-                <span className="font-bold text-gc-dark-green">Auf Anfrage</span>
+                <span className="font-bold text-gc-dark-green whitespace-nowrap">Auf Anfrage</span>
               </li>
             </ul>
           </div>

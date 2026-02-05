@@ -137,17 +137,17 @@ export default function GuestsPage() {
                         <span className="font-medium">{row.category}</span>
                       </td>
                       <td className="px-6 py-4 text-center text-gc-dark-green">
-                        <span className={`font-semibold ${row.hole9 === "-" ? "text-gc-dark-green/40" : ""}`}>
+                        <span className={`font-semibold whitespace-nowrap ${row.hole9 === "-" ? "text-gc-dark-green/40" : ""}`}>
                           {row.hole9}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-center text-gc-dark-green">
-                        <span className={`font-semibold ${row.hole18 === "-" ? "text-gc-dark-green/40" : ""}`}>
+                        <span className={`font-semibold whitespace-nowrap ${row.hole18 === "-" ? "text-gc-dark-green/40" : ""}`}>
                           {row.hole18}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-center text-gc-dark-green">
-                        <span className={`font-semibold ${row.hole27 === "-" ? "text-gc-dark-green/40" : ""}`}>
+                        <span className={`font-semibold whitespace-nowrap ${row.hole27 === "-" ? "text-gc-dark-green/40" : ""}`}>
                           {row.hole27}
                         </span>
                       </td>
@@ -193,7 +193,7 @@ export default function GuestsPage() {
                       <span className="font-medium">{rental.name}</span>
                     </td>
                     <td className="px-6 py-4 text-right text-gc-dark-green">
-                      <span className={`font-bold ${rental.price === "Auf Anfrage" ? "text-gc-gold" : "text-gc-gold"}`}>
+                      <span className={`font-bold whitespace-nowrap ${rental.price === "Auf Anfrage" ? "text-gc-gold" : "text-gc-gold"}`}>
                         {rental.price}
                       </span>
                     </td>

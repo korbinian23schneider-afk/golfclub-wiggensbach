@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useContact } from "@/app/context/contact-context";
+import { GolfCartIcon } from "@/components/icons/GolfCartIcon";
 
 // Cart-Status für die drei Kurse
 const cartStatus = [
@@ -64,39 +65,16 @@ export default function Header() {
       <div className="bg-[#1b3b2a]">
         <div className="mx-auto flex max-w-full items-center justify-end gap-4 px-4 py-2 sm:px-6 lg:px-12">
           {/* Cart-Status-Anzeige für die drei Kurse */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             {cartStatus.map(({ course, status }) => (
               <div
                 key={course}
                 className="flex items-center gap-1.5 text-xs text-white/90"
                 title={`Kurs ${course}: Carts ${status === "green" ? "erlaubt" : "nicht erlaubt"}`}
               >
-                {/* Golf-Cart Icon */}
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  {/* Körper (Chassis) */}
-                  <rect x="4" y="10" width="16" height="5" rx="0.5" strokeWidth="1.5" />
-                  {/* Windschutzscheibe */}
-                  <path d="M6 10 L6 7 L18 7 L18 10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  {/* Dachrahmen */}
-                  <path d="M6 7 L12 4 L18 7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  {/* Vorderrad */}
-                  <circle cx="8" cy="17" r="2.5" strokeWidth="1.5" />
-                  <circle cx="8" cy="17" r="1" fill="currentColor" />
-                  {/* Hinterrad */}
-                  <circle cx="16" cy="17" r="2.5" strokeWidth="1.5" />
-                  <circle cx="16" cy="17" r="1" fill="currentColor" />
-                  {/* Lenkrad */}
-                  <circle cx="16" cy="12" r="1.5" strokeWidth="1.2" />
-                  {/* Sitz */}
-                  <rect x="6" y="11" width="6" height="3" rx="0.3" strokeWidth="1" />
-                </svg>
-                <span className="hidden sm:inline">Kurs {course}</span>
+                <GolfCartIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="font-semibold">{course}</span>
+                <span className="hidden sm:inline">Kurs</span>
                 {/* Status-Punkt */}
                 <span
                   className={`h-2 w-2 rounded-full transition-all duration-300 ${
@@ -189,28 +167,12 @@ export default function Header() {
                         <Link
                           key={child.href}
                           href={child.href}
-                          className={`flex items-center gap-2 px-4 py-3 text-sm transition-all duration-300 ${
+                          className={`flex items-center px-4 py-3 text-sm transition-all duration-300 ${
                             childIsActive
                               ? "bg-gc-gold/10 text-gc-gold font-semibold"
                               : "text-gc-dark-green hover:bg-gc-gold/10 hover:text-gc-gold hover:translate-x-1"
                           }`}
                         >
-                          {child.icon === "idCard" && (
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
-                            </svg>
-                          )}
-                          {child.icon === "handshake" && (
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                            </svg>
-                          )}
-                          {child.icon === "camera" && (
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                          )}
                           {child.label}
                         </Link>
                       );
@@ -304,28 +266,12 @@ export default function Header() {
                                 setMobileMenuOpen(false);
                                 setMobileDropdownOpen(null);
                               }}
-                              className={`flex items-center gap-2 px-4 py-2 text-sm rounded-lg transition ${
+                              className={`flex items-center px-4 py-2 text-sm rounded-lg transition ${
                                 childIsActive
                                   ? "bg-gc-gold/20 text-gc-gold font-semibold"
                                   : "text-gc-dark-green/80 hover:bg-gc-gold/10 hover:text-gc-gold"
                               }`}
                             >
-                              {child.icon === "idCard" && (
-                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
-                                </svg>
-                              )}
-                              {child.icon === "handshake" && (
-                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                </svg>
-                              )}
-                              {child.icon === "camera" && (
-                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                              )}
                               {child.label}
                             </Link>
                           );

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { courses, type CourseKey, type Hole } from "@/lib/courseData";
 import HoleModal from "@/components/HoleModal";
+import { GolfCartIcon } from "@/components/icons/GolfCartIcon";
 
 const courseKeys: { key: CourseKey; label: string; subtitle: string }[] = [
   { key: "A", label: "Kurs A", subtitle: "Panorama" },
@@ -47,7 +48,7 @@ export default function CoursePage() {
         </p>
 
         {/* Haupt-Container: Integrierte Card-Komponente */}
-        <div className="mt-10 mx-auto max-w-4xl w-full rounded-3xl shadow-xl overflow-hidden bg-[#1b3b2a]">
+        <div className="mt-10 mx-auto max-w-4xl w-full rounded-3xl border-2 border-gc-gold/30 shadow-2xl overflow-hidden bg-[#1b3b2a]">
           {/* Header: Die Tab-Leiste */}
           <div className="flex w-full bg-stone-100">
             {courseKeys.map(({ key, label, subtitle }) => {
@@ -88,31 +89,7 @@ export default function CoursePage() {
         <div className="mb-6 flex flex-col gap-4 border-b border-white/20 pb-6 sm:flex-row sm:items-center sm:justify-between">
           {/* Element A: Cart-Ampel */}
           <div className="flex items-center gap-3">
-            {/* Golf-Cart Icon */}
-            <svg
-              className="h-6 w-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              {/* Wagen-Körper */}
-              <rect x="4" y="10" width="16" height="5" rx="0.5" strokeWidth="1.5" />
-              {/* Windschutzscheibe */}
-              <path d="M6 10 L6 7 L18 7 L18 10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              {/* Dachrahmen */}
-              <path d="M6 7 L12 4 L18 7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              {/* Vorderrad */}
-              <circle cx="8" cy="17" r="2.5" strokeWidth="1.5" />
-              <circle cx="8" cy="17" r="1" fill="currentColor" />
-              {/* Hinterrad */}
-              <circle cx="16" cy="17" r="2.5" strokeWidth="1.5" />
-              <circle cx="16" cy="17" r="1" fill="currentColor" />
-              {/* Lenkrad */}
-              <circle cx="16" cy="12" r="1.5" strokeWidth="1.2" />
-              {/* Sitz */}
-              <rect x="6" y="11" width="6" height="3" rx="0.3" strokeWidth="1" />
-            </svg>
+            <GolfCartIcon className="h-6 w-6" />
             {/* Status-Punkt und Text */}
             <div className="flex items-center gap-2">
               <span
@@ -156,7 +133,7 @@ export default function CoursePage() {
               key={hole.id}
               type="button"
               onClick={() => setModalHole(hole)}
-              className="group flex flex-col overflow-hidden rounded-xl border border-gc-gold/40 bg-white text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-gc-gold hover:shadow-xl"
+              className="group flex flex-col overflow-hidden rounded-xl border-2 border-gc-gold/50 bg-white text-left shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-gc-gold hover:shadow-2xl"
             >
               <div className="flex items-center justify-between bg-gc-dark-green/10 px-4 py-3">
                 <div>
@@ -223,6 +200,82 @@ export default function CoursePage() {
         </div>
       </section>
         </div>
+
+      {/* Spielvorgaben-Box */}
+      <div className="mt-10">
+        <div className="rounded-2xl border-2 border-gc-gold/30 bg-white p-6 shadow-xl sm:p-8">
+          <h3 className="mb-6 text-2xl font-bold text-gc-dark-green">
+            Spielvorgabe herunterladen
+          </h3>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {/* Button 1: Kurs A/B */}
+            <a
+              href="/spielvorgabe-ab.jpg"
+              download
+              className="group flex items-center justify-center gap-2 rounded-lg bg-[#1b3b2a] px-6 py-4 font-semibold text-white transition-all duration-300 hover:bg-[#1b3b2a]/90 hover:shadow-md"
+            >
+              <svg
+                className="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              Kurs A/B (Panorama/Illertal)
+            </a>
+
+            {/* Button 2: Kurs C/A */}
+            <a
+              href="/spielvorgabe-ca.jpg"
+              download
+              className="group flex items-center justify-center gap-2 rounded-lg bg-[#1b3b2a] px-6 py-4 font-semibold text-white transition-all duration-300 hover:bg-[#1b3b2a]/90 hover:shadow-md"
+            >
+              <svg
+                className="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              Kurs C/A (Zugspitz/Panorama)
+            </a>
+
+            {/* Button 3: Kurs C/B */}
+            <a
+              href="/spielvorgabe-cb.jpg"
+              download
+              className="group flex items-center justify-center gap-2 rounded-lg bg-[#1b3b2a] px-6 py-4 font-semibold text-white transition-all duration-300 hover:bg-[#1b3b2a]/90 hover:shadow-md"
+            >
+              <svg
+                className="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              Kurs C/B (Zugspitz/Illertal)
+            </a>
+          </div>
+        </div>
+      </div>
 
       {modalHole && (
         <HoleModal
